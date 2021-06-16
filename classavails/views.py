@@ -1,6 +1,10 @@
-from django.shortcuts import render
-from django.http import HttpResponse
+from django.views import generic
+from .models import ClassAvails
 
-# Create your views here.
-def index(request):
-    return HttpResponse("Hello, world. You're at the greetings index.")
+
+class IndexView(generic.ListView):
+    template_name = 'classavails/index.html'
+    context_object_name = 'classavails_list'
+    def get_queryset(self):
+        """Return the all the class availabilities."""
+        return ClassAvails.objects.all()
