@@ -2,6 +2,8 @@ from django.views import generic
 from django.urls import reverse_lazy
 from .models import ClassAvails
 from notes.models import Notes
+from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
 
 class IndexView(generic.ListView):
     template_name = 'classavails/index.html'
@@ -17,6 +19,7 @@ class SearchView(generic.ListView):
         """Return the all the class availabilities."""
         return ClassAvails.objects.all()
 
+@method_decorator(login_required, name='dispatch')
 class CreateView(generic.edit.CreateView):
     template_name = 'classavails/create.html'
     model = Notes

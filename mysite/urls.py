@@ -18,5 +18,7 @@ from django.urls import include, path
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    #path('toothless/', include('useraccounts.urls')), #landing page
+    path('accounts/', include('useraccounts.urls')),
     path('home/', include('classavails.urls')),
 ]

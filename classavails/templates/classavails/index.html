@@ -1,4 +1,8 @@
 <h1>Hub</h1>
+<form class="logout-link" action="{% url 'useraccounts:logout'%}" method="post">
+    {% csrf_token%}
+    <button type="submit">Logout</button>
+</form>
 {% if notes_list %}
     <ul>
     {% for note in notes_list %}
