@@ -1,11 +1,10 @@
-{% if classavails_list %}
+<h1>Hub</h1>
+{% if notes_list %}
     <ul>
-    {% for class in classavails_list %}
-        <li>{{ class.CRN }}</li>
-        <li>{{ class.department }}</li>
-        <li>{{ class.courseNumber }}</li>
+    {% for note in notes_list %}
+        <li>{{ note.message }}</li>
     {% endfor %}
     </ul>
 {% else %}
-    <p>You haven't chosen any classes</p>
+    <p>You haven't written any notes</p>
 {% endif %}

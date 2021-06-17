@@ -1,0 +1,12 @@
+<h1>Search</h1>
+{% if classavails_list %}
+    <ul>
+    {% for class in classavails_list %}
+        <li>{{ class.CRN }}</li>
+        <li>{{ class.department }}</li>
+        <li>{{ class.courseNumber }}</li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>You haven't chosen any classes</p>
+{% endif %}
