@@ -1,4 +1,5 @@
 from django.views import generic
+from django.urls import reverse_lazy
 from .models import ClassAvails
 from notes.models import Notes
 
@@ -15,3 +16,21 @@ class SearchView(generic.ListView):
     def get_queryset(self):
         """Return the all the class availabilities."""
         return ClassAvails.objects.all()
+
+class CreateView(generic.edit.CreateView):
+    template_name = 'classavails/create.html'
+    model = Notes
+    fields = ['note']
+    success_url = reverse_lazy('classavails:index')
+
+class UpdateView(generic.edit.UpdateView):
+    template_name = 'classavails/update.html'
+    model = Notes
+    fields = ['note']
+    success_url = reverse_lazy('classavails:index')
+
+class DeleteView(generic.edit.DeleteView):
+    template_name = 'classavails/delete.html' # override default of greetings/greeting_confirm_delete.html
+    model = Notes
+    success_url = reverse_lazy('classavails:index')
+    
