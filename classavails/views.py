@@ -8,6 +8,12 @@ from django.utils.decorators import method_decorator
 class IndexView(generic.ListView):
     template_name = 'classavails/index.html'
     context_object_name = 'notes_list'
+#user.is_authenticated
+#    if :
+ #       logged_in = true
+  #  else:
+   #     logged_in = false
+
     def get_queryset(self):
         """Return all the Notes."""
         return Notes.objects.all()
