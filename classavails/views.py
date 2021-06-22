@@ -29,7 +29,7 @@ class SearchView(generic.ListView):
 class CreateView(generic.edit.CreateView):
     template_name = 'classavails/create.html'
     model = Notes
-    fields = ['note']
+    fields = ['note', 'author']
     success_url = reverse_lazy('classavails:index')
 
 class UpdateView(generic.edit.UpdateView):
