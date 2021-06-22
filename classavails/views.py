@@ -4,6 +4,7 @@ from .models import ClassAvails
 from notes.models import Notes
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
+from .filters import ClassAvailsFilter
 
 class IndexView(generic.ListView):
     template_name = 'classavails/index.html'
@@ -21,9 +22,16 @@ class IndexView(generic.ListView):
 class SearchView(generic.ListView):
     template_name = 'classavails/search.html'
     context_object_name = 'classavails_list'
+    # model = ClassAvails
+
     def get_queryset(self):
         """Return the all the class availabilities."""
         return ClassAvails.objects.all()
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['filter'] = ClassAvailsFilter(self.request.GET, queryset = self.get_queryset())
+        return context
 
 @method_decorator(login_required, name='dispatch')
 class CreateView(generic.edit.CreateView):

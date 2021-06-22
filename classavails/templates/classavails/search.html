@@ -1,7 +1,13 @@
 <h1>Search</h1>
+
+<form method="GET">
+    {{ filter.form }}
+    <button type="submit" class="btn btn-primary">Search</button>
+</form>
+
 {% if classavails_list %}
     <ul>
-    {% for class in classavails_list %}
+    {% for class in filter.qs %}
         <li>{{ class.CRN }}</li>
         <li>{{ class.course }}</li>
         <li>{{ class.title }}</li>

@@ -6,4 +6,8 @@ class ClassAvailsFilter(django_filters.FilterSet):
 
     class Meta:
         model = ClassAvails
-        fields = ('CRN', 'department', 'courseNumber')
+        fields = {
+            'CRN': ['icontains'],
+            'course': ['icontains'],
+            'title': ['icontains'],
+        }
