@@ -3,8 +3,11 @@
     <ul>
     {% for class in classavails_list %}
         <li>{{ class.CRN }}</li>
-        <li>{{ class.department }}</li>
-        <li>{{ class.courseNumber }}</li>
+        <li>{{ class.course }}</li>
+        <li>{{ class.title }}</li>
+        <br>
+        -------------------------------------
+        <br>
     {% endfor %}
     </ul>
 {% else %}
