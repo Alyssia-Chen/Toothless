@@ -34,6 +34,7 @@ INSTALLED_APPS = [
     'classavails',
     'useraccounts',
     'notes',
+    'django_filters',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

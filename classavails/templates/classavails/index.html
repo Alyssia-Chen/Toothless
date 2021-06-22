@@ -8,7 +8,7 @@
     {% if notes_list %}
         <ul>
         {% for note in notes_list %}
-            <li>{{ note.note }}
+            <li>{{ note.note }} by: {{ note.author }}
                 <span><a href="{% url 'classavails:update' note.id %}">edit</a></span>
                 <span><a href="{% url 'classavails:delete' note.id %}">delete</a></span>
             </li>
