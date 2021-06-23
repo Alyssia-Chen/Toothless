@@ -1,5 +1,8 @@
+<h1>Update this note</h1>
+
 <form method="post">{% csrf_token %}
     {{ form.as_p }}
     <input type="submit" value="Update">
     <a href="{% url 'classavails:delete' object.id %}">delete</a>
+    <a href="{% url 'classavails:index' %}">Back to hub</a>
 </form>

@@ -1,3 +1,5 @@
+<h1>Create a new note</h1>
+<a href="{% url 'classavails:index' %}">Back to hub</a>
 <form method="post">{% csrf_token %}
     {{ form.as_p }}
     <input type="submit" value="Save">
