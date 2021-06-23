@@ -8,4 +8,6 @@ urlpatterns = [
     path('new/', views.CreateView.as_view(), name='create'),
     path('update/<int:pk>/', views.UpdateView.as_view(), name='update'),
     path('delete/<int:pk>/', views.DeleteView.as_view(), name='delete'),
+    path('choices/', views.ChoiceView.as_view(), name='choice'),
+    path('both/', views.BothView.as_view(), name='both'),
 ]
