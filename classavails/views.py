@@ -53,28 +53,3 @@ class DeleteView(generic.edit.DeleteView):
     template_name = 'classavails/delete.html' # override default of classavails/classavails_confirm_delete.html
     model = Notes
     success_url = reverse_lazy('classavails:index')
-
-class ChoiceView(generic.ListView):
-    template_name = 'classavails/choices.html'
-    model = Choice
-    success_url = reverse_lazy('classavails:index')
-    context_object_name = 'choices_list'
-
-    def get_queryset(self):
-        """Return all the Choices."""
-        return Choice.objects.all()
-    
-class BothView(generic.ListView):
-    template_name = 'classavails/both.html'
-    context_object_name = 'choices_list'
-    model = Choice
-
-    def get_context_data(self, **kwargs):
-        context = super(BothView, self).get_context_data(**kwargs)
-        context.update({
-            'notes_list': Notes.objects.all(),
-        })
-        return context
-
-    def get_queryset(self):
-        return Choice.objects.all()
