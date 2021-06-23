@@ -1,5 +1,6 @@
 from django.db import models
 from django.views.generic.detail import SingleObjectTemplateResponseMixin
+from django.contrib.auth.models import User
 
 # Create your models here.
 
@@ -22,3 +23,11 @@ class ClassAvails(models.Model):
     def __str__(self):
         # LATER Add a tostring representation of CRN?
         return self.title
+
+class Choice(models.Model):
+    course = models.ForeignKey(ClassAvails, on_delete=models.CASCADE, default=None)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, default=None)
+
+    def __str__(self):
+        # LATER Add a tostring representation of CRN?
+        return self.user.username

@@ -1,3 +1,6 @@
+{% if user.is_authenticated %}
+<h1>You're already logged in.</h1>
+{% else %}
 <h1>Log in</h1>
 <form class="site-form" action="{% url 'useraccounts:login'%}" method="post">
     {% csrf_token%}
@@ -7,3 +10,4 @@
     {% endif %}
     <input type = "submit" value="Login">
 </form>
+{% endif%}

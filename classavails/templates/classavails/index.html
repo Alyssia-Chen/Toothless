@@ -1,6 +1,6 @@
 <h1>Hub</h1>
 {% if user.is_authenticated %}
-    <h3>Hello {{user.username}}</h3>
+    <h3>Hello {{user.username}}!</h3>
     <a href="{% url 'classavails:search' %}">Search for classes</a>
     <hr>
 
@@ -18,6 +18,20 @@
         <p>You haven't written any notes</p>
     {% endif %}
     <a href="{% url 'classavails:create' %}">Create a new note</a>
+    
+    {% if choices_list %}
+        <h3>Choices:</h3>
+        <ul>
+        {% for choice in choices_list %}
+            <li>
+                {{ choice.course.course }} taught by: {{ choice.course.instructor }}
+            </li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>You haven't chosen any classes to keep an eye on</p>
+    {% endif %}
+
     <hr>
     <form class="logout-link" action="{% url 'useraccounts:logout'%}" method="post">
         {% csrf_token%}
