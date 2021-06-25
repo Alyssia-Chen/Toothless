@@ -9,7 +9,18 @@
 {% if classavails_list %}
     <ul>
     {% for class in filter.qs %}
-        <li>{{ class.CRN }}</li>
+        <li> 
+            <form action="{% url 'classavails:add_class' %}" method="POST">
+                {% csrf_token %}
+                <button type="submit" name='add' value={{class.pk}}>Add</button>
+            </form>
+            <!---
+            <form method="get">
+                <button type="submit" name='add' value={{ class }}>Add</button>
+            </form>
+            -->
+        </li>
+        <li>{{class.CRN}}</li>
         <li>{{ class.course }}</li>
         <li>{{ class.title }}</li>
         <br>

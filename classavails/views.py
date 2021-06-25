@@ -1,11 +1,28 @@
 from django.db.models.base import Model
 from django.views import generic
 from django.urls import reverse_lazy
+from django.shortcuts import render, redirect
 from .models import Choice, ClassAvails
 from notes.models import Notes
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from .filters import ClassAvailsFilter
+import logging
+
+logger = logging.getLogger()
+
+def add_class(request):
+    if request.method == 'POST':
+        if request.POST.get('add'):
+            choice=Choice()
+            choice.course = ClassAvails.objects.get(pk=(request.POST.get('add')))
+            choice.user= request.user
+            choice.save()
+            
+            return redirect('classavails:search')
+
+    else:
+        return redirect('classavails:search')
 
 class IndexView(generic.ListView):
     template_name = 'classavails/index.html'
@@ -22,12 +39,15 @@ class IndexView(generic.ListView):
     def get_queryset(self):
         return Choice.objects.all()
 
+
 class SearchView(generic.ListView):
     template_name = 'classavails/search.html'
     context_object_name = 'classavails_list'
     # model = ClassAvails
+    logger.debug('on search page')
 
     def get_queryset(self):
+
         """Return the all the class availabilities."""
         return ClassAvails.objects.all()
 
