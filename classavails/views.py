@@ -73,3 +73,8 @@ class DeleteView(generic.edit.DeleteView):
     template_name = 'classavails/delete.html' # override default of classavails/classavails_confirm_delete.html
     model = Notes
     success_url = reverse_lazy('classavails:index')
+
+class DeleteChoiceView(generic.edit.DeleteView):
+    template_name = 'classavails/deletechoice.html' # override default of classavails/classavails_confirm_delete.html
+    model = Choice
+    success_url = reverse_lazy('classavails:index')

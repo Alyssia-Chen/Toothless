@@ -1,0 +1,6 @@
+<h1>Delete this class from your list?</h1>
+<form method="post">{% csrf_token %}
+    <p>Are you sure you want to delete "{{ choice.course.title }}"?</p>
+    <input type="submit" value="Confirm">
+    <a href="{% url 'classavails:index' %}">Back to hub</a>
+</form>

@@ -25,6 +25,8 @@
         {% for choice in choices_list %}
             <li>
                 {{ choice.course.course }} taught by: {{ choice.course.instructor }}
+                <span><a href="{% url 'classavails:deletechoice' choice.id %}">delete</a></span>
+
             </li>
         {% endfor %}
         </ul>
