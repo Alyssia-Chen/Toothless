@@ -1,6 +1,11 @@
-<h1>Create a new note</h1>
-<a href="{% url 'classavails:index' %}">Back to hub</a>
-<form method="post">{% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" value="Save">
-</form>
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+<link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+<div class="container">
+    <h1>Create a new note</h1>
+    <a href="{% url 'classavails:index' %}">Back to hub</a>
+    <form method="post">{% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Save">
+    </form>
+</div>

@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 
 import django_heroku
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -28,6 +29,20 @@ DEBUG = True
 
 ALLOWED_HOSTS = [] ##Empty allows local
 
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler',
+        },
+    },
+    'root': {
+        'handlers': ['console'],
+        'level': 'DEBUG',
+    },
+}
 
 # Application definition
 
@@ -123,6 +138,13 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/static/'
+#--------------------------------------------------
+STATIC_ROOT = os.path.join(BASE_DIR, 'root')
+#-----------------------------------------------------
+STATICFILES_DIRS = [
+        os.path.join(BASE_DIR, 'static'),
+        os.path.join(BASE_DIR, 'bootstrap'),
+]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
