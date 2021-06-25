@@ -1,6 +1,13 @@
-<h1>Signup</h1>
-<form class="site-form" action="/accounts/signup/" method="post">
-    {% csrf_token%}
-    {{ form }}
-    <input type = "submit" value="Signup">
-</form>
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+<link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+<div class="container">
+
+    <h1>Signup</h1>
+    <form class="site-form" action="/accounts/signup/" method="post">
+        {% csrf_token%}
+        {{ form }}
+        <input type = "submit" value="Signup">
+    </form>
+
+</div>

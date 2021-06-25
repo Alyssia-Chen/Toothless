@@ -1,33 +1,39 @@
-<h1>Search for classes</h1>
-<a href="{% url 'classavails:index' %}">Back to hub</a>
-<hr>
-<form method="GET">
-    {{ filter.form }}
-    <button type="submit" class="btn btn-primary">Search</button>
-</form>
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+<link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+<div class="container">
 
-{% if classavails_list %}
-    <ul>
-    {% for class in filter.qs %}
-        <li> 
-            <form action="{% url 'classavails:add_class' %}" method="POST">
-                {% csrf_token %}
-                <button type="submit" name='add' value={{class.pk}}>Add</button>
-            </form>
-            <!---
-            <form method="get">
-                <button type="submit" name='add' value={{ class }}>Add</button>
-            </form>
-            -->
-        </li>
-        <li>{{class.CRN}}</li>
-        <li>{{ class.course }}</li>
-        <li>{{ class.title }}</li>
-        <br>
-        <hr>
-        <br>
-    {% endfor %}
-    </ul>
-{% else %}
-    <p>You haven't chosen any classes</p>
-{% endif %}
+    <h1>Search for classes</h1>
+    <a href="{% url 'classavails:index' %}">Back to hub</a>
+    <hr>
+    <form method="GET">
+        {{ filter.form }}
+        <button type="submit" class="btn btn-primary">Search</button>
+    </form>
+
+    {% if classavails_list %}
+        <ul>
+        {% for class in filter.qs %}
+            <li> 
+                <form action="{% url 'classavails:add_class' %}" method="POST">
+                    {% csrf_token %}
+                    <button type="submit" name='add' value={{class.pk}}>Add</button>
+                </form>
+                <!---
+                <form method="get">
+                    <button type="submit" name='add' value={{ class }}>Add</button>
+                </form>
+                -->
+            </li>
+            <li>{{class.CRN}}</li>
+            <li>{{ class.course }}</li>
+            <li>{{ class.title }}</li>
+            <br>
+            <hr>
+            <br>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>You haven't chosen any classes</p>
+    {% endif %}
+</div>
