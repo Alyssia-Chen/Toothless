@@ -1,0 +1,5 @@
+--- # basic notes
+- model: notes.notes
+  fields:
+    author: 1
+    note: Never take class at 6am
