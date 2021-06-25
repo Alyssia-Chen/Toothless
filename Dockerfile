@@ -6,4 +6,7 @@ COPY scripts/install_dependencies.sh /usr/src/app/scripts/install_dependencies.s
 COPY requirements.txt /usr/src/app/
 RUN scripts/install_dependencies.sh
 
+#Copy everything from our current context (.) into Heroku's remote directory
 COPY . /usr/src/app/
+
+CMD scripts/start_app.sh
