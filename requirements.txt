@@ -3,3 +3,4 @@ django-filter~=2.4.0
 bs4 #0.0.1? or beautifulsoup4 4.9.3?
 pyyaml~=5.1 # needed to support defining our seeds in a YAML file
 django-heroku~=0.3.1
+psycopg2-binary~=2.8.0
