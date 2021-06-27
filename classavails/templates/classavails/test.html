@@ -20,31 +20,43 @@
         <div class="col-md-4 rounded" style="background-color:#fbf2d7ff">
             <br>
             <b>Notes</b>
-            <div class="accordion" id="accordionExample">
-                <div class="accordion-item">
-                    <h2 class="accordion-header" id="headingTwo">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                            data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                            Accordion Item #2
-                        </button>
-                    </h2>
-                    <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
-                        data-bs-parent="#accordionExample">
-                        <div class="accordion-body">
-                            <strong>This is the second item's accordion body.</strong> It is hidden by default, until the
-                            collapse plugin adds the appropriate classes that we use to style each element. These classes
-                            control the overall appearance, as well as the showing and hiding via CSS transitions. You can
-                            modify any of this with custom CSS or overriding our default variables. It's also worth noting that
-                            just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit
-                            overflow.
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
         </div>
     </div>
 </div>
+<canvas id="chart"></canvas>
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.3.0/Chart.min.js"></script>
+<script>
+    var ctx = document.getElementById('chart');
+    var myChart = new Chart(ctx, {
+        type: 'doughnut',
+        data: {
+            labels: ['Risk Level'],
+            datasets: [
+                {
+                    label: 'Low',
+                    data: [67.8],
+                    backgroundColor: '#D6E9C6' // green
+                },
+                {
+                    label: 'Moderate',
+                    data: [20.7],
+                    backgroundColor: '#FAEBCC' // yellow
+                },
+                {
+                    label: 'High',
+                    data: [11.4],
+                    backgroundColor: '#EBCCD1' // red
+                }
+            ]
+        },
+        options: {
+            scales: {
+                xAxes: [{ stacked: true }],
+                yAxes: [{ stacked: false }]
+            }
+        }
+    });
+
+</script>
 {% endblock %}

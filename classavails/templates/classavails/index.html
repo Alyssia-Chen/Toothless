@@ -1,6 +1,7 @@
 {% extends 'classavails/base_layout.html' %}
 
 {% block content %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.3.0/Chart.min.js"></script>
 <div class="container">
     <h1>Hub</h1>
     {% if user.is_authenticated %}
@@ -14,25 +15,46 @@
             {% if choices_list %}
             <ul>
                 {% for choice in choices_list %}
-                    <div class="accordion" id="accordionExample{{choice.pk}}">
-                        <div class="accordion-item">
-                            <h6 class="accordion-header" id="headingSix{{choice.pk}}">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                    data-bs-target="#collapseTwo{{choice.pk}}" aria-expanded="false" aria-controls="collapseTwo{{choice.pk}}">
-                                    {{ choice.course.course }} taught by: {{ choice.course.instructor }}
-                                </button>
-                            </h6>
-                            <div id="collapseTwo{{choice.pk}}" class="accordion-collapse collapse" aria-labelledby="headingTwo{{choice.pk}}"
-                                data-bs-parent="#accordionExample{{choice.pk}}">
-                                <div class="accordion-body">
-                                    CRN: {{ choice.course.CRN }}
-                                    Location: {{ choice.course.location }}
-                                    Time: {{ choice.course.time }}
-                                    <span><a href="{% url 'classavails:deletechoice' choice.id %}">delete</a></span>
+                <div class="accordion" id="accordionExample{{choice.pk}}">
+                    <div class="accordion-item">
+                        <h6 class="accordion-header" id="headingSix{{choice.pk}}">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#collapseTwo{{choice.pk}}" aria-expanded="false"
+                                aria-controls="collapseTwo{{choice.pk}}">
+                                {{ choice.course.course }} taught by: {{ choice.course.instructor }}
+                            </button>
+                        </h6>
+                        <div id="collapseTwo{{choice.pk}}" class="accordion-collapse collapse"
+                            aria-labelledby="headingTwo{{choice.pk}}" data-bs-parent="#accordionExample{{choice.pk}}">
+                            <div class="accordion-body" style="background-color: rgb(177, 174, 92);">
+                                CRN: {{ choice.course.CRN }} | Location: {{ choice.course.location }}
+                                | Time: {{ choice.course.time }}
+                                <div class="chart-container" style="position: relative; height:20vh; width:20vw">
+                                    <canvas id="chart{{choice.pk}}"></canvas>
                                 </div>
+                                <script>
+                                    var ctx = document.getElementById('chart{{choice.pk}}');
+                                    var myChart = new Chart(ctx, {
+                                        type: 'pie',
+                                        data: {
+                                            labels: ['Seats available', 'Seats taken'],
+                                            datasets: [
+                                                {
+                                                    data: ['{{choice.course.seatsAvail}}', '{{choice.course.curEnrolled}}'],
+                                                    backgroundColor: ['#D6E9C6', '#EBCCD1'],
+                                                },
+                                            ]
+                                        },
+                                        options: {
+                                            maintainAspectRatio: false,
+                                        },
+                                    });
+                                </script>
+                                <span><a href="{% url 'classavails:deletechoice' choice.id %}">delete</a></span>
                             </div>
                         </div>
                     </div>
+                </div>
                 {% endfor %}
             </ul>
             {% else %}
