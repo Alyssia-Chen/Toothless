@@ -14,10 +14,25 @@
             {% if choices_list %}
             <ul>
                 {% for choice in choices_list %}
-                <li>
-                    {{ choice.course.course }} taught by: {{ choice.course.instructor }}
-                    <span><a href="{% url 'classavails:deletechoice' choice.id %}">delete</a></span>
-                </li>
+                    <div class="accordion" id="accordionExample{{choice.pk}}">
+                        <div class="accordion-item">
+                            <h6 class="accordion-header" id="headingSix{{choice.pk}}">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#collapseTwo{{choice.pk}}" aria-expanded="false" aria-controls="collapseTwo{{choice.pk}}">
+                                    {{ choice.course.course }} taught by: {{ choice.course.instructor }}
+                                </button>
+                            </h6>
+                            <div id="collapseTwo{{choice.pk}}" class="accordion-collapse collapse" aria-labelledby="headingTwo{{choice.pk}}"
+                                data-bs-parent="#accordionExample{{choice.pk}}">
+                                <div class="accordion-body">
+                                    CRN: {{ choice.course.CRN }}
+                                    Location: {{ choice.course.location }}
+                                    Time: {{ choice.course.time }}
+                                    <span><a href="{% url 'classavails:deletechoice' choice.id %}">delete</a></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 {% endfor %}
             </ul>
             {% else %}
