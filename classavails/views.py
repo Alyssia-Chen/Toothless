@@ -78,3 +78,11 @@ class DeleteChoiceView(generic.edit.DeleteView):
     template_name = 'classavails/deletechoice.html' # override default of classavails/classavails_confirm_delete.html
     model = Choice
     success_url = reverse_lazy('classavails:index')
+
+
+class TestView(generic.ListView):
+    template_name = 'classavails/test.html'
+    model = Choice
+
+    def get_queryset(self):
+        return Choice.objects.all()

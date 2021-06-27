@@ -1,51 +1,59 @@
-{% load static %}
-<link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
-<link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+{% extends 'classavails/base_layout.html' %}
+
+{% block content %}
 <div class="container">
     <h1>Hub</h1>
     {% if user.is_authenticated %}
-        <h3>Hello {{user.username}}!</h3>
-        <hr>
-
-        {% if choices_list %}
-            <h3>Choices:</h3>
+    <h3>Hello {{user.username}}!</h3>
+    <hr>
+    <div class="row">
+        <div class="col-md-7 rounded" style="background-color:#bab86cff">
+            <br>
+            <b>Classes to keep an eye on:</b>
+            <hr>
+            {% if choices_list %}
             <ul>
-            {% for choice in choices_list %}
+                {% for choice in choices_list %}
                 <li>
                     {{ choice.course.course }} taught by: {{ choice.course.instructor }}
                     <span><a href="{% url 'classavails:deletechoice' choice.id %}">delete</a></span>
-
                 </li>
-            {% endfor %}
+                {% endfor %}
             </ul>
-        {% else %}
+            {% else %}
             <p>You haven't chosen any classes to keep an eye on</p>
-        {% endif %}
-        <a href="{% url 'classavails:search' %}">Find more classes</a>
+            {% endif %}
+            <a href="{% url 'classavails:search' %}">Find more classes</a>
+        </div>
 
+        <div class="col-md-1 rounded" style="background-color:#8a9a5bff">
+        </div>
+
+        <div class="col-md-4 rounded" style="background-color:rgb(233, 214, 159)">
+            <br>
+            <b>Notes</b>
             <hr>
-        {% if notes_list %}
-            <h3>Notes:</h3>
+            {% if notes_list %}
             <ul>
-            {% for note in notes_list %}
+                {% for note in notes_list %}
                 <li>{{ note.note }} by: {{ note.author }}
+                    <br>
                     <span><a href="{% url 'classavails:update' note.id %}">edit</a></span>
                     <span><a href="{% url 'classavails:delete' note.id %}">delete</a></span>
                 </li>
-            {% endfor %}
+                {% endfor %}
             </ul>
-        {% else %}
+            {% else %}
             <p>You haven't written any notes</p>
-        {% endif %}
-        <a href="{% url 'classavails:create' %}">Create a new note</a>
-        
-        <hr>
-        <form class="logout-link" action="{% url 'useraccounts:logout'%}" method="post">
-            {% csrf_token%}
-            <button type="submit">Logout</button>
-        </form>
+            {% endif %}
+            <a href="{% url 'classavails:create' %}">Create a new note</a>
+        </div>
+    </div>
+    <hr>
 
     {% else %}
-        <h3>You are not logged in, please <a href="{% url 'useraccounts:login'%}">log in</a> or <a href="{% url 'useraccounts:signup'%}">sign up</a></h3>
+    <h3>You are not logged in, please <a href="{% url 'useraccounts:login'%}">log in</a> or <a
+            href="{% url 'useraccounts:signup'%}">sign up</a></h3>
     {% endif %}
 </div>
+{% endblock %}
