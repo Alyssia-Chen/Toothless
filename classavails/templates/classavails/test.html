@@ -1,0 +1,62 @@
+{% extends 'classavails/base_layout.html' %}
+
+{% block content %}
+<div class="container">
+    <br>
+    <h1>Hub</h1>
+    <hr>
+    <div class="row">
+        <div class="col-md-7 rounded" style="background-color:#bab86cff">
+            <br>
+            <b>Classes to keep an eye on</b><br>
+            Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.
+            Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis,
+            ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo,
+            fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae,
+            justo.
+        </div>
+        <div class="col-md-1 rounded" style="background-color:#8a9a5bff">
+        </div>
+        <div class="col-md-4 rounded" style="background-color:#fbf2d7ff">
+            <br>
+            <b>Notes</b>
+        </div>
+    </div>
+</div>
+<canvas id="chart"></canvas>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.3.0/Chart.min.js"></script>
+<script>
+    var ctx = document.getElementById('chart');
+    var myChart = new Chart(ctx, {
+        type: 'doughnut',
+        data: {
+            labels: ['Risk Level'],
+            datasets: [
+                {
+                    label: 'Low',
+                    data: [67.8],
+                    backgroundColor: '#D6E9C6' // green
+                },
+                {
+                    label: 'Moderate',
+                    data: [20.7],
+                    backgroundColor: '#FAEBCC' // yellow
+                },
+                {
+                    label: 'High',
+                    data: [11.4],
+                    backgroundColor: '#EBCCD1' // red
+                }
+            ]
+        },
+        options: {
+            scales: {
+                xAxes: [{ stacked: true }],
+                yAxes: [{ stacked: false }]
+            }
+        }
+    });
+
+</script>
+{% endblock %}

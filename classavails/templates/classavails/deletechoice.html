@@ -1,6 +1,6 @@
-{% load static %}
-<link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
-<link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+{% extends 'classavails/base_layout.html' %}
+
+{% block content %}
 <div class="container">
         
     <h1>Delete this class from your list?</h1>
@@ -11,3 +11,4 @@
     </form>
 
 </div>
+{% endblock %}

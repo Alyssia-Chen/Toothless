@@ -1,8 +1,9 @@
-{% load static %}
-<link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
-<link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+{% extends 'classavails/base_layout.html' %}
+
+{% block content %}
 <div class="container">
     {% if user.is_authenticated %}
+    <br>
     <h1>You're already logged in.</h1>
     {% else %}
     <h1>Log in</h1>
@@ -10,9 +11,10 @@
         {% csrf_token%}
         {{ form }}
         {% if request.GET.next %}
-            <input type="hidden" name="next" value={{ request.GET.next }}>
+        <input type="hidden" name="next" value={{ request.GET.next }}>
         {% endif %}
-        <input type = "submit" value="Login">
+        <input type="submit" value="Login">
     </form>
     {% endif%}
 </div>
+{% endblock %}

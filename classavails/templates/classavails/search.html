@@ -1,6 +1,6 @@
-{% load static %}
-<link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
-<link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+{% extends 'classavails/base_layout.html' %}
+
+{% block content %}
 <div class="container">
 
     <h1>Search for classes</h1>
@@ -34,6 +34,7 @@
         {% endfor %}
         </ul>
     {% else %}
-        <p>You haven't chosen any classes</p>
+        <p>There are no classes to choose from</p>
     {% endif %}
 </div>
+{% endblock %}

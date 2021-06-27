@@ -1,6 +1,6 @@
-{% load static %}
-<link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
-<link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+{% extends 'classavails/base_layout.html' %}
+
+{% block content %}
 <div class="container">
 
     <h1>Update this note</h1>
@@ -12,3 +12,4 @@
         <a href="{% url 'classavails:index' %}">Back to hub</a>
     </form>
 </div>
+{% endblock %}
