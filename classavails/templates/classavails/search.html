@@ -2,11 +2,17 @@
 
 {% block content %}
 <div class="container">
-
     <h1>Search for classes</h1>
     <a href="{% url 'classavails:index' %}">Back to hub</a>
     <hr>
-    <form method="GET">
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-success" role="alert">
+                {{message}}
+            </div>
+        {% endfor %}
+    {% endif %}
+        <form method="GET">
         {{ filter.form }}
         <button type="submit" class="btn btn-primary">Search</button>
     </form>
