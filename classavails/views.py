@@ -2,6 +2,7 @@ from django.db.models.base import Model
 from django.views import generic
 from django.urls import reverse_lazy
 from django.shortcuts import render, redirect
+from django.contrib import messages
 from .models import Choice, ClassAvails
 from notes.models import Notes
 from django.contrib.auth.decorators import login_required
@@ -16,11 +17,10 @@ def add_class(request):
         if request.POST.get('add'):
             choice=Choice()
             choice.course = ClassAvails.objects.get(pk=(request.POST.get('add')))
-            choice.user= request.user
+            choice.user = request.user
             choice.save()
-            
+            messages.success(request, f'Successfully added class "{choice.course.title}", with professor "{choice.course.instructor}"')
             return redirect('classavails:search')
-
     else:
         return redirect('classavails:search')
 
@@ -44,10 +44,9 @@ class SearchView(generic.ListView):
     template_name = 'classavails/search.html'
     context_object_name = 'classavails_list'
     # model = ClassAvails
-    logger.debug('on search page')
+    #logger.debug('on search page')
 
     def get_queryset(self):
-
         """Return the all the class availabilities."""
         return ClassAvails.objects.all()
 

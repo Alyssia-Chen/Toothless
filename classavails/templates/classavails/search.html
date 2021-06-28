@@ -2,37 +2,58 @@
 
 {% block content %}
 <div class="container">
-
     <h1>Search for classes</h1>
     <a href="{% url 'classavails:index' %}">Back to hub</a>
     <hr>
-    <form method="GET">
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-success" role="alert">
+                {{message}}
+            </div>
+        {% endfor %}
+    {% endif %}
+        <form method="GET">
         {{ filter.form }}
         <button type="submit" class="btn btn-primary">Search</button>
     </form>
 
     {% if classavails_list %}
-        <ul>
-        {% for class in filter.qs %}
-            <li> 
-                <form action="{% url 'classavails:add_class' %}" method="POST">
-                    {% csrf_token %}
-                    <button type="submit" name='add' value={{class.pk}}>Add</button>
-                </form>
-                <!---
-                <form method="get">
-                    <button type="submit" name='add' value={{ class }}>Add</button>
-                </form>
-                -->
-            </li>
-            <li>{{class.CRN}}</li>
-            <li>{{ class.course }}</li>
-            <li>{{ class.title }}</li>
-            <br>
-            <hr>
-            <br>
-        {% endfor %}
-        </ul>
+        <hr>
+        <table class="table table-bordered table-sm table-success">
+            <thead>
+                <tr class="table-info">
+                    <th scope="col"></th>
+                    <th scope="col">Course</th>
+                    <th scope="col">Instructor</th>
+                    <th scope="col">Title</th>
+                    <th scope="col">Schedule</th>
+                    <th scope="col">Room</th>
+                    <th scope="col">Seats</th>
+                    <th scope="col">Credits</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for class in filter.qs %}
+                    <tr>
+                        <td>
+                            <form action="{% url 'classavails:add_class' %}" method="POST">
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-info" name='add' value={{class.pk}}>Add</button>
+                            </form>
+                        </td>
+                        <td>{{ class.course }}</td>
+                        <td>{{class.instructor}}</td>
+                        <td>{{ class.title }}</td>
+                        <td>{{ class.days }}, {{ class.time }}</td>
+                        <td>{{ class.location }}</td>
+                        <td>{{ class.seatsAvail }} / {{ class.curEnrolled|add:class.seatsAvail }}</td>
+                        <td>{{ class.credits }}</td>
+
+
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
     {% else %}
         <p>There are no classes to choose from</p>
     {% endif %}
