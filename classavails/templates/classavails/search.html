@@ -14,7 +14,7 @@
     {% endif %}
         <form method="GET">
         {{ filter.form }}
-        <button type="submit" class="btn btn-primary">Search</button>
+        <button type="submit" class="btn btn-sm btn-success">Search</button>
     </form>
 
     {% if classavails_list %}
@@ -38,7 +38,7 @@
                         <td>
                             <form action="{% url 'classavails:add_class' %}" method="POST">
                                 {% csrf_token %}
-                                <button type="submit" class="btn btn-info" name='add' value={{class.pk}}>Add</button>
+                                <button type="submit" class="btn btn-info btn-sm" name='add' value={{class.pk}}>Add</button>
                             </form>
                         </td>
                         <td>{{ class.course }}</td>

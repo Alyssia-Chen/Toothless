@@ -19,7 +19,7 @@ def add_class(request):
             choice.course = ClassAvails.objects.get(pk=(request.POST.get('add')))
             choice.user = request.user
             choice.save()
-            messages.success(request, f'Successfully added class "{choice.course.title}", with professor "{choice.course.instructor}"')
+            messages.success(request, f'Successfully added class \'{choice.course.title}\' with instructor \'{choice.course.instructor}\'')
             return redirect('classavails:search')
     else:
         return redirect('classavails:search')

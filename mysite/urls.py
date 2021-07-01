@@ -22,7 +22,6 @@ urlpatterns = [
     #path('toothless/', include('useraccounts.urls')), #landing page
     path('accounts/', include('useraccounts.urls')),
     path('', include('classavails.urls')),
-    path('test/', include('classavails.urls')),
 ]
 
 urlpatterns += staticfiles_urlpatterns()
